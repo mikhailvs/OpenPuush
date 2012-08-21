@@ -10,7 +10,7 @@ Relationship to Puush
 --------
 OpenPuush is in no way derivative of Puush in the sense that no reverse engineering (eg disassembling, etc) was done to
 clone functionality. All the features included in OpenPuush that are one-to-one with features of Puush are derived solely
-by inspecting the behavior of the application from a user's point-of-view.
+by inspecting the behavior of the application from a user's point-of-view as well as plenty of common sense.
 
 Similarly, the icons for OpenPuush represent the functionality of the application as well as its current state of
 operation.
