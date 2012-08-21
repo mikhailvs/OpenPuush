@@ -1,0 +1,712 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>configwindow</class>
+ <widget class="QTabWidget" name="configwindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>515</width>
+    <height>320</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>515</width>
+    <height>320</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>515</width>
+    <height>320</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>TabWidget</string>
+  </property>
+  <property name="currentIndex">
+   <number>4</number>
+  </property>
+  <widget class="QWidget" name="general">
+   <attribute name="title">
+    <string>General</string>
+   </attribute>
+   <widget class="QGroupBox" name="general_settings">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>490</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="title">
+     <string>General Settings</string>
+    </property>
+    <widget class="QCheckBox" name="start_on_startup">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>20</y>
+       <width>211</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Start OpenPuush on startup</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="on_successful_upload">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>70</y>
+      <width>490</width>
+      <height>90</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>On Successful upload</string>
+    </property>
+    <widget class="QCheckBox" name="play_notification_sound">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>20</y>
+       <width>191</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Play a notification sound</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="copy_link_to_clipboard">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>40</y>
+       <width>171</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Copy link to clipboard</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="open_link_in_browser">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>60</y>
+       <width>161</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Open link in browser</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="save_a_local_copy_of_image">
+     <property name="geometry">
+      <rect>
+       <x>270</x>
+       <y>20</y>
+       <width>221</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Save a local copy of images</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="path_to_local_copy">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>270</x>
+       <y>50</y>
+       <width>161</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="readOnly">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QToolButton" name="browse_for_local_path">
+     <property name="geometry">
+      <rect>
+       <x>440</x>
+       <y>50</y>
+       <width>26</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>...</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="tray_icon_behaviour">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>169</y>
+      <width>490</width>
+      <height>110</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Tray Icon Behaviour</string>
+    </property>
+    <widget class="QLabel" name="on_double_click_label">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>20</y>
+       <width>121</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>On double-click...</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="show_settings_dialog">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>40</y>
+       <width>161</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Show settings dialog</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="begin_screen_capture_mode">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>60</y>
+       <width>211</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Begin screen capture mode</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="open_upload_file_dialog">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>80</y>
+       <width>181</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Open upload file dialog</string>
+     </property>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QWidget" name="key_bindings">
+   <attribute name="title">
+    <string>Key Bindings</string>
+   </attribute>
+   <widget class="QGroupBox" name="keyboard_bindings">
+    <property name="geometry">
+     <rect>
+      <x>8</x>
+      <y>9</y>
+      <width>491</width>
+      <height>270</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Keyboard Bindings</string>
+    </property>
+    <widget class="QPushButton" name="capture_fullscreen_button">
+     <property name="geometry">
+      <rect>
+       <x>240</x>
+       <y>30</y>
+       <width>161</width>
+       <height>27</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Ctrl+Shift+3</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="capture_current_window_button">
+     <property name="geometry">
+      <rect>
+       <x>240</x>
+       <y>60</y>
+       <width>161</width>
+       <height>27</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Ctrl+Shift+2</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="capture_area_button">
+     <property name="geometry">
+      <rect>
+       <x>240</x>
+       <y>90</y>
+       <width>161</width>
+       <height>27</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Ctrl+Shift+4</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="upload_file_button">
+     <property name="geometry">
+      <rect>
+       <x>240</x>
+       <y>120</y>
+       <width>161</width>
+       <height>27</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Ctrl+Shift+U</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="upload_clipboard_button">
+     <property name="geometry">
+      <rect>
+       <x>240</x>
+       <y>200</y>
+       <width>161</width>
+       <height>27</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Ctrl+Shift+5</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="toggle_functionality_button">
+     <property name="geometry">
+      <rect>
+       <x>240</x>
+       <y>230</y>
+       <width>161</width>
+       <height>27</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Ctrl+Alt+P</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="capture_fullscreen_label">
+     <property name="geometry">
+      <rect>
+       <x>90</x>
+       <y>31</y>
+       <width>141</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Capture full screen:</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="capture_current_window_label">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>60</y>
+       <width>201</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Capture current window:</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="capture_area_label">
+     <property name="geometry">
+      <rect>
+       <x>80</x>
+       <y>90</y>
+       <width>151</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Capture area:</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="upload_file_label">
+     <property name="geometry">
+      <rect>
+       <x>130</x>
+       <y>120</y>
+       <width>101</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Upload file:</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="use_shortcut_tip_label">
+     <property name="geometry">
+      <rect>
+       <x>50</x>
+       <y>160</y>
+       <width>351</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Use this shortcut in Windows Explorer to quickly upload selected files.</string>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+     <property name="openExternalLinks">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QLabel" name="upload_clipboard_label">
+     <property name="geometry">
+      <rect>
+       <x>100</x>
+       <y>200</y>
+       <width>131</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Upload clipboard:</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="toggle_functionality_label">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>230</y>
+       <width>221</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Toggle OpenPuush functionality:</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QWidget" name="account">
+   <attribute name="title">
+    <string>Account</string>
+   </attribute>
+   <widget class="QGroupBox" name="account_details">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>491</width>
+      <height>271</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Account Details</string>
+    </property>
+    <widget class="QWidget" name="gridLayoutWidget">
+     <property name="geometry">
+      <rect>
+       <x>60</x>
+       <y>60</y>
+       <width>361</width>
+       <height>92</height>
+      </rect>
+     </property>
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="1" column="0">
+       <widget class="QLabel" name="used_label">
+        <property name="text">
+         <string>Used:</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QLabel" name="logged_in_as_label">
+        <property name="text">
+         <string>Logged in as:</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLabel" name="username_label">
+        <property name="text">
+         <string>hmbl9r@gmail.com</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QPushButton" name="go_to_dropbox_button">
+        <property name="text">
+         <string>Go to Dropbox</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QPushButton" name="logout_button">
+        <property name="text">
+         <string>Logout</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QLabel" name="used_info_label">
+        <property name="text">
+         <string>10%</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QWidget" name="updates">
+   <attribute name="title">
+    <string>Updates</string>
+   </attribute>
+   <widget class="QGroupBox" name="update_management">
+    <property name="geometry">
+     <rect>
+      <x>9</x>
+      <y>9</y>
+      <width>491</width>
+      <height>271</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Update Management</string>
+    </property>
+    <widget class="QWidget" name="horizontalLayoutWidget">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>40</y>
+       <width>421</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <layout class="QHBoxLayout" name="update_management_layout">
+      <item>
+       <widget class="QLabel" name="last_checked_date">
+        <property name="text">
+         <string>Last checked:</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="last_checked_label">
+        <property name="text">
+         <string>8/13/2012 5:06:48 PM</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="check_for_updates_button">
+        <property name="text">
+         <string>Check for updates</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QWidget" name="advanced">
+   <attribute name="title">
+    <string>Advanced</string>
+   </attribute>
+   <widget class="QGroupBox" name="screen_capture_quality">
+    <property name="geometry">
+     <rect>
+      <x>9</x>
+      <y>9</y>
+      <width>491</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Screen Capture Quality</string>
+    </property>
+    <widget class="QWidget" name="verticalLayoutWidget">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>30</y>
+       <width>481</width>
+       <height>48</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="screen_capture_quality_layout">
+      <item>
+       <widget class="QRadioButton" name="no_compression">
+        <property name="text">
+         <string>Always use png</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QRadioButton" name="smart_compression">
+        <property name="text">
+         <string>Smart (use JPEG unless PNG is smaller in filesize)</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="context_menu">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>90</y>
+      <width>491</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Context Menu</string>
+    </property>
+    <widget class="QCheckBox" name="show_context_menu">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>20</y>
+       <width>481</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Show explorer context menu item</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="fullscreen_capture">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>140</y>
+      <width>491</width>
+      <height>101</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Fullscreen Capture</string>
+    </property>
+    <widget class="QWidget" name="verticalLayoutWidget_2">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>20</y>
+       <width>481</width>
+       <height>74</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="fullscreen_capture_layout">
+      <item>
+       <widget class="QRadioButton" name="capture_all_screens">
+        <property name="text">
+         <string>Capture all screens</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QRadioButton" name="capture_primary_screen">
+        <property name="text">
+         <string>Capture screen containing mouse cursor</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QRadioButton" name="capture_screen_with_cursor">
+        <property name="text">
+         <string>Always capture primary screen</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="dangerous_stuff">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>240</y>
+      <width>491</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Dangerous Stuff</string>
+    </property>
+    <widget class="QCheckBox" name="enable_experimental_features">
+     <property name="geometry">
+      <rect>
+       <x>11</x>
+       <y>19</y>
+       <width>217</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Enable experimental features</string>
+     </property>
+    </widget>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
