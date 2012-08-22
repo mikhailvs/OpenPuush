@@ -30,3 +30,6 @@ LIBS += -lphonon
 FORMS += \
     configwindow.ui \
     tray_menu.ui
+
+RESOURCES += \
+    resources.qrc

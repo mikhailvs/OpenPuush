@@ -35,6 +35,8 @@ class configwindow;
 class screenshot_overlay;
 class tray_menu;
 
+class QUrl;
+
 class openpuush : public QObject
 {
     Q_OBJECT

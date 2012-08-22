@@ -54,7 +54,7 @@ static const QString NOT_AUTHORIZED_MESSAGE = "Your action could not be complete
 
 openpuush::openpuush(QObject *parent) :
     QObject(parent),
-    base_path(QDir::currentPath()),
+    base_path(":"),
     dropbox_authenticated(false),
     shortcuts_enabled(true),
     follow_tray_icon_link(false)
@@ -327,7 +327,32 @@ void openpuush::fullscreen_ss()
 {
     if (dropbox_authenticated)
     {
-        QRect f = ss_overlay->geometry();
+        QRect f;
+        QDesktopWidget dw;
+        if (config::load(config::CAPTURE_ALL_SCREENS).toBool())
+        {
+            f = ss_overlay->geometry();
+        }
+        else if (config::load(config::CAPTURE_SCREEN_WITH_CURSOR).toBool())
+        {
+            QPoint p = QCursor::pos();
+
+            for (int i = 0; i < dw.screenCount(); ++i)
+            {
+                f = dw.screenGeometry(i);
+                qDebug() << f;
+
+                if (p.x() >= f.left())
+                {
+                    break;
+                }
+            }
+        }
+        else if (config::load(config::CAPTURE_PRIMARY_SCREEN).toBool())
+        {
+            f = dw.screenGeometry(dw.primaryScreen());
+        }
+
         got_screenshot(QPixmap::grabWindow(QApplication::desktop()->winId(),
                                            f.left(), f.top(), f.width(), f.height()));
     }

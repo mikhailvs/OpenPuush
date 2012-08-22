@@ -665,14 +665,14 @@
       <item>
        <widget class="QRadioButton" name="capture_primary_screen">
         <property name="text">
-         <string>Capture screen containing mouse cursor</string>
+         <string>Always capture primary screen</string>
         </property>
        </widget>
       </item>
       <item>
        <widget class="QRadioButton" name="capture_screen_with_cursor">
         <property name="text">
-         <string>Always capture primary screen</string>
+         <string>Capture screen containing mouse cursor</string>
         </property>
        </widget>
       </item>
