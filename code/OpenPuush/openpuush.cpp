@@ -54,7 +54,6 @@ static const QString NOT_AUTHORIZED_MESSAGE = "Your action could not be complete
 
 openpuush::openpuush(QObject *parent) :
     QObject(parent),
-    base_path(":"),
     dropbox_authenticated(false),
     shortcuts_enabled(true),
     follow_tray_icon_link(false)
@@ -142,7 +141,7 @@ void openpuush::init_dropbox()
 void openpuush::init_tray_icon()
 {
     tray_icon = new QSystemTrayIcon(this);
-    tray_icon->setIcon(QIcon(base_path + "/icons/0.png"));
+    tray_icon->setIcon(QIcon(":/icons/0.png"));
     tray_icon->show();
 
     connect(tray_icon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
@@ -205,14 +204,14 @@ void openpuush::db_upload_progress(qint64 sent, qint64 total)
 {
     int img_num = (sent * 10) / total;
 
-    tray_icon->setIcon(QIcon(base_path + QString("/icons/%1.png").arg(img_num)));
+    tray_icon->setIcon(QIcon(QString(":/icons/%1.png").arg(img_num)));
 
     qDebug() << ((sent * 100) / total) << "%";
 }
 
 void openpuush::db_upload_finished()
 {
-    tray_icon->setIcon(QIcon(base_path + "/icons/success.png"));
+    tray_icon->setIcon(QIcon(":/icons/success.png"));
     QTimer::singleShot(2000, this, SLOT(tray_icon_normal()));
     tray_icon->showMessage("Success", link, QSystemTrayIcon::NoIcon, 2000);
     follow_tray_icon_link = true;
@@ -236,7 +235,7 @@ void openpuush::db_upload_finished()
 
 void openpuush::db_upload_error()
 {
-    tray_icon->setIcon(QIcon(base_path + "/icons/error.png"));
+    tray_icon->setIcon(QIcon(":/icons/error.png"));
     QTimer::singleShot(2000, this, SLOT(tray_icon_normal()));
     tray_icon->showMessage("Error", "The current action failed.");
     /*Phonon::createPlayer(Phonon::VideoCategory,
@@ -478,7 +477,7 @@ void openpuush::follow_link()
 
 void openpuush::tray_icon_normal()
 {
-    tray_icon->setIcon(QIcon(base_path + "/icons/0.png"));
+    tray_icon->setIcon(QIcon(":/icons/0.png"));
 }
 
 void openpuush::set_shortcuts_enabled(bool enabled, bool all_but_toggle_functionality)

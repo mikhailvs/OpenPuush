@@ -76,8 +76,6 @@ private slots:
     void load_start_on_boot();
 
 private:
-    const QString base_path;
-
     dropbox            * db;
     configwindow       * conf_win;
     screenshot_overlay * ss_overlay;
