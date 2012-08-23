@@ -38,7 +38,7 @@ screenshot_overlay::screenshot_overlay(QWidget *parent) :
     for (int i = 0; i < dw.screenCount(); ++i)
     {
         w += dw.screenGeometry(i).width();
-#ifdef Q_WS_X11
+#if defined(Q_WS_X11)
         w += 5;
 #endif
     }
@@ -59,7 +59,7 @@ void screenshot_overlay::showEvent(QShowEvent * e)
 {
     QMainWindow::showEvent(e);
     qDebug() << geometry();
-#ifdef Q_WS_X11
+#if defined(Q_WS_X11)
     move(-1000, -1000); // I don't know why I must do this...
 #endif
     setWindowOpacity(0.1);
@@ -81,7 +81,7 @@ void screenshot_overlay::keyPressEvent(QKeyEvent * e)
         close();
         break;
     case Qt::Key_Space:
-        //grabbing_window = !grabbing_window;
+        grabbing_window = !grabbing_window;
         if (grabbing_window)
         {
             setCursor(Qt::OpenHandCursor);
@@ -130,6 +130,7 @@ void screenshot_overlay::mouseReleaseEvent(QMouseEvent * e)
     if (grabbing_window)
     {
         setCursor(Qt::OpenHandCursor);
+        selected_area->close();
     }
     else
     {
@@ -147,6 +148,7 @@ void screenshot_overlay::mouseMoveEvent(QMouseEvent * e)
     QMainWindow::mouseMoveEvent(e);
     if (grabbing_window)
     {
+
     }
     else
     {
@@ -155,10 +157,41 @@ void screenshot_overlay::mouseMoveEvent(QMouseEvent * e)
     }
 }
 
+class NativeWindow : public QWidget {
+public:
+    NativeWindow(WId wid) {
+        QWidget::create(wid, false, false); // window, initializeWindow, destroyOldWindow
+    }
+    ~NativeWindow() {
+        QWidget::destroy(false, false); // destroyWindow, destroySubWindows
+    }
+};
+
+#if defined(Q_WS_X11)
+
+#include <X11/Xlib.h>
+
+#endif
+
 void screenshot_overlay::get_screenshot()
 {
     if (grabbing_window)
     {
+        WindowList windows = QxtWindowSystem::windows();
+        QStringList titles = QxtWindowSystem::windowTitles();
+
+        XWindowAttributes attr;
+        Display * disp = XOpenDisplay(":0.0");
+
+        for (int i = 0; i < windows.length(); ++i)
+        {
+            WId id = windows[i];
+
+            XGetWindowAttributes(disp, id, &attr);
+
+            qDebug() << titles[i];
+            qDebug() << attr.width << " " << attr.height;
+        }
     }
     else
     {

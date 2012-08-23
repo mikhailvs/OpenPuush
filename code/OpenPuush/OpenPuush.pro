@@ -25,7 +25,7 @@ SOURCES += dropbox.cpp main.cpp screenshot_overlay.cpp \
     config.cpp \
     tray_menu.cpp
 
-LIBS += -lphonon
+LIBS += -lphonon -lX11
 
 FORMS += \
     configwindow.ui \
