@@ -18,7 +18,7 @@ HEADERS += dropbox.hpp screenshot_overlay.hpp \
     audio_mgr.hpp \
     config.hpp \
     tray_menu.hpp \
-    signal_proxy.h
+    signal_proxy.hpp
 SOURCES += dropbox.cpp main.cpp screenshot_overlay.cpp \
     openpuush.cpp \
     configwindow.cpp \
