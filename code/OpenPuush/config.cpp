@@ -99,12 +99,21 @@ void config::defaults()
     save(SHOW_SETTINGS,              true);
     save(BEGIN_SCREEN_CAPTURE,       false);
     save(OPEN_FILE_DIALOG,           false);
+#if defined(Q_OS_MACX)
+    save(CAPTURE_FULLSCREEN,         "Meta+Shift+3");
+    save(CAPTURE_CURRENT_WINDOW,     "Meta+Shift+2");
+    save(CAPTURE_AREA,               "Meta+Shift+4");
+    save(UPLOAD_FILE,                "Meta+Shift+U");
+    save(UPLOAD_CLIPBOARD,           "Meta+Shift+5");
+    save(TOGGLE_FUNCTIONALITY,       "Meta+Alt+P");
+#else
     save(CAPTURE_FULLSCREEN,         "Ctrl+Shift+3");
     save(CAPTURE_CURRENT_WINDOW,     "Ctrl+Shift+2");
     save(CAPTURE_AREA,               "Ctrl+Shift+4");
     save(UPLOAD_FILE,                "Ctrl+Shift+U");
     save(UPLOAD_CLIPBOARD,           "Ctrl+Shift+5");
     save(TOGGLE_FUNCTIONALITY,       "Ctrl+Alt+P");
+#endif
     save(LAST_UPDATE_CHECK,          0);
     save(NO_COMPRESSION,             true);
     save(SMART_COMPRESSION,          false);
