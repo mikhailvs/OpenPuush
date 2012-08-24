@@ -25,7 +25,9 @@ SOURCES += dropbox.cpp main.cpp screenshot_overlay.cpp \
     config.cpp \
     tray_menu.cpp
 
-LIBS += -lphonon -lQxtWidgets -lQxtCore
+LIBS += -lphonon
+
+win32: LIBS +=  -lQxtWidgets -lQxtCore
 
 FORMS += \
     configwindow.ui \

@@ -243,7 +243,7 @@ void configwindow::keyReleaseEvent(QKeyEvent * e)
             config::TOGGLE_FUNCTIONALITY
         };
 
-        QPushButton * button;
+        QPushButton * button = 0;
         switch (current_shortcut)
         {
         case config::CAPTURE_FULLSCREEN:
