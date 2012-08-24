@@ -17,15 +17,13 @@ HEADERS += dropbox.hpp screenshot_overlay.hpp \
     configwindow.hpp \
     audio_mgr.hpp \
     config.hpp \
-    tray_menu.hpp \
-    signal_proxy.hpp
+    tray_menu.hpp
 SOURCES += dropbox.cpp main.cpp screenshot_overlay.cpp \
     openpuush.cpp \
     configwindow.cpp \
     audio_mgr.cpp \
     config.cpp \
-    tray_menu.cpp \
-    signal_proxy.cpp
+    tray_menu.cpp
 
 LIBS += -lphonon -lQxtWidgets -lQxtCore
 
