@@ -25,7 +25,7 @@
 
 #include "screenshot_overlay.hpp"
 
-#if defined(Q_OS_UNIX)
+#if defined(Q_OS_LINUX)
 #   include <QxtGui/QxtWindowSystem>
 #else
 #   include <QxtWidgets/QxtWindowSystem>

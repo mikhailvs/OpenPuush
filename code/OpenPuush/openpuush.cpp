@@ -38,7 +38,7 @@
 #include <phonon/MediaSource>
 #include <phonon/VideoWidget>
 
-#if defined(Q_OS_UNIX)
+#if defined(Q_OS_LINUX)
 #   include <QxtGlobalShortcut>
 #else
 #   include <QxtWidgets/QxtGlobalShortcut>
