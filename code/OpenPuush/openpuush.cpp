@@ -38,7 +38,11 @@
 #include <phonon/MediaSource>
 #include <phonon/VideoWidget>
 
-#include <QxtGlobalShortcut>
+#if defined(Q_OS_UNINX)
+#   include <QxtGlobalShortcut>
+#else
+#   include <QxtWidgets/QxtGlobalShortcut>
+#endif
 
 #include "dropbox.hpp"
 #include "openpuush.hpp"

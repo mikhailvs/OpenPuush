@@ -18,7 +18,6 @@
 #include <QKeyEvent>
 #include <QMouseEvent>
 #include <QDesktopWidget>
-#include <QxtGui/QxtWindowSystem>
 #include <QPixmap>
 #include <QApplication>
 #include <QTimer>
@@ -26,7 +25,11 @@
 
 #include "screenshot_overlay.hpp"
 
-#include <iostream>
+#if defined(Q_OS_UNIX)
+#   include <QxtGui/QxtWindowSystem>
+#else
+#   include <QxtWidgets/QxtWindowSystem>
+#endif
 
 screenshot_overlay::screenshot_overlay(QWidget *parent) :
     QMainWindow(parent)
@@ -177,21 +180,6 @@ void screenshot_overlay::get_screenshot()
 {
     if (grabbing_window)
     {
-        WindowList windows = QxtWindowSystem::windows();
-        QStringList titles = QxtWindowSystem::windowTitles();
-
-        XWindowAttributes attr;
-        Display * disp = XOpenDisplay(":0.0");
-
-        for (int i = 0; i < windows.length(); ++i)
-        {
-            WId id = windows[i];
-
-            XGetWindowAttributes(disp, id, &attr);
-
-            qDebug() << titles[i];
-            qDebug() << attr.width << " " << attr.height;
-        }
     }
     else
     {
