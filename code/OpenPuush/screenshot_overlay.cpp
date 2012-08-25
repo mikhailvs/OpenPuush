@@ -160,22 +160,6 @@ void screenshot_overlay::mouseMoveEvent(QMouseEvent * e)
     }
 }
 
-class NativeWindow : public QWidget {
-public:
-    NativeWindow(WId wid) {
-        QWidget::create(wid, false, false); // window, initializeWindow, destroyOldWindow
-    }
-    ~NativeWindow() {
-        QWidget::destroy(false, false); // destroyWindow, destroySubWindows
-    }
-};
-
-#if defined(Q_WS_X11)
-
-#include <X11/Xlib.h>
-
-#endif
-
 void screenshot_overlay::get_screenshot()
 {
     if (grabbing_window)

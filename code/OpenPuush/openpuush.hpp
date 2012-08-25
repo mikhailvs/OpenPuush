@@ -29,11 +29,12 @@ class QxtGlobalShortcut;
 class QShowEvent;
 class QFileDialog;
 class QTimer;
+class QMenu;
+class QAction;
 
 class dropbox;
 class configwindow;
 class screenshot_overlay;
-class tray_menu;
 
 class QUrl;
 
@@ -75,15 +76,17 @@ private slots:
 
     void load_start_on_boot();
 
+    void exit();
+
 private:
     dropbox            * db;
     configwindow       * conf_win;
     screenshot_overlay * ss_overlay;
-    tray_menu          * menu;
 
     QSystemTrayIcon * tray_icon;
     QFileDialog     * file_dialog;
     QTimer          * info_update_timer;
+    QMenu           * menu;
 
     QxtGlobalShortcut * fullscreen_shortcut;
     QxtGlobalShortcut * current_window_shortcut;
@@ -92,7 +95,18 @@ private:
     QxtGlobalShortcut * upload_clipboard_shortcut;
     QxtGlobalShortcut * toggle_functionality_shortcut;
 
+    QAction * action_exit;
+    QAction * action_settings;
+    QAction * action_disable;
+    QAction * action_file_upload;
+    QAction * action_clipboard_upload;
+    QAction * action_capture_area;
+    QAction * action_capture_desktop;
+    QAction * action_capture_current_window;
+    QAction * action_my_account;
+
     QString link;
+    QStringList recent_links;
     bool dropbox_authenticated;
     bool shortcuts_enabled;
     bool follow_tray_icon_link;

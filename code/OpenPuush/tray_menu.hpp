@@ -20,10 +20,6 @@
 
 #include <QMenu>
 
-namespace Ui {
-    class tray_menu;
-}
-
 class tray_menu : public QMenu
 {
     Q_OBJECT
@@ -33,7 +29,6 @@ public:
     ~tray_menu();
     
 private:
-    Ui::tray_menu * ui;
 };
 
 #endif // TRAY_MENU_HPP

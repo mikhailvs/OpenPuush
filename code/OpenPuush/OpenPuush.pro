@@ -29,8 +29,7 @@ SOURCES += dropbox.cpp main.cpp screenshot_overlay.cpp \
 win32: LIBS +=  -lQxtWidgets -lQxtCore
 
 FORMS += \
-    configwindow.ui \
-    tray_menu.ui
+    configwindow.ui
 
 RESOURCES += \
     resources.qrc

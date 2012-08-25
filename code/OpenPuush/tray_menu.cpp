@@ -16,16 +16,13 @@
 */
 
 #include "tray_menu.hpp"
-#include "ui_tray_menu.h"
 
 tray_menu::tray_menu(QWidget * parent) :
-    QMenu(parent),
-    ui(new Ui::tray_menu)
+    QMenu(parent)
 {
-    ui->setupUi(this);
+    setStyleSheet("background:white");
 }
 
 tray_menu::~tray_menu()
 {
-    delete ui;
 }
