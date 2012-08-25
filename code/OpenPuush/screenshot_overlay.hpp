@@ -36,7 +36,6 @@ public:
     
 private:
     QWidget * selected_area;
-    bool grabbing_window;
     bool taking_ss;
 
     QPoint initial_selected;

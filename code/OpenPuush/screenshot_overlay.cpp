@@ -66,7 +66,6 @@ void screenshot_overlay::showEvent(QShowEvent * e)
     move(-1000, -1000); // I don't know why I must do this...
 #endif
     setWindowOpacity(0.1);
-    grabbing_window = false;
     selected_area->setGeometry(0, 0, 0, 0);
 }
 
@@ -83,16 +82,6 @@ void screenshot_overlay::keyPressEvent(QKeyEvent * e)
     case Qt::Key_Escape:
         close();
         break;
-    case Qt::Key_Space:
-        grabbing_window = !grabbing_window;
-        if (grabbing_window)
-        {
-            setCursor(Qt::OpenHandCursor);
-        }
-        else
-        {
-            setCursor(Qt::CrossCursor);
-        }
     default:
         break;
     }
@@ -115,31 +104,16 @@ void screenshot_overlay::update_selected()
 void screenshot_overlay::mousePressEvent(QMouseEvent * e)
 {
     QMainWindow::mousePressEvent(e);
-    if (grabbing_window)
-    {
-        setCursor(Qt::ClosedHandCursor);
-    }
-    else
-    {
-        initial_selected = e->pos();
-        current_selected = initial_selected;
-        selected_area->show();
-    }
+    initial_selected = e->pos();
+    current_selected = initial_selected;
+    selected_area->show();
 }
 
 void screenshot_overlay::mouseReleaseEvent(QMouseEvent * e)
 {
     QMainWindow::mouseReleaseEvent(e);
-    if (grabbing_window)
-    {
-        setCursor(Qt::OpenHandCursor);
-        selected_area->close();
-    }
-    else
-    {
-        current_selected = QPoint(-1, -1);
-        initial_selected = QPoint(-1, -1);
-    }
+    current_selected = QPoint(-1, -1);
+    initial_selected = QPoint(-1, -1);
 
     setWindowOpacity(0);
     QTimer::singleShot(100, this, SLOT(get_screenshot()));
@@ -149,33 +123,20 @@ void screenshot_overlay::mouseReleaseEvent(QMouseEvent * e)
 void screenshot_overlay::mouseMoveEvent(QMouseEvent * e)
 {
     QMainWindow::mouseMoveEvent(e);
-    if (grabbing_window)
-    {
-
-    }
-    else
-    {
-        current_selected = e->pos();
-        update_selected();
-    }
+    current_selected = e->pos();
+    update_selected();
 }
 
 void screenshot_overlay::get_screenshot()
 {
-    if (grabbing_window)
-    {
-    }
-    else
-    {
-        int x, y, w, h;
-        QRect frame = selected_area->geometry();
-        x = frame.left();
-        y = frame.top();
-        w = frame.width();
-        h = frame.height();
+    int x, y, w, h;
+    QRect frame = selected_area->geometry();
+    x = frame.left();
+    y = frame.top();
+    w = frame.width();
+    h = frame.height();
 
-        QPixmap p = QPixmap::grabWindow(QApplication::desktop()->winId(), x, y, w, h);
-        emit got_screenshot(p);
-    }
+    QPixmap p = QPixmap::grabWindow(QApplication::desktop()->winId(), x, y, w, h);
+    emit got_screenshot(p);
     selected_area->setGeometry(0, 0, 0, 0);
 }
