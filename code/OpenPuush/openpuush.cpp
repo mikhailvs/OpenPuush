@@ -463,18 +463,27 @@ void openpuush::upload_clipboard()
 {
     if (dropbox_authenticated)
     {
-        QString text = QApplication::clipboard()->text().trimmed();
-        QByteArray contents(text.toAscii());
-        QUrl url(text);
 
-        if (url.isValid() && url.isLocalFile())
+        const QMimeData * mime_data = QApplication::clipboard()->mimeData();
+
+        if (mime_data->hasText())
         {
-            upload_file(url.toLocalFile());
+            QUrl url(mime_data->text().trimmed());
+            if (url.isValid() && url.isLocalFile())
+            {
+                upload_file(url.toLocalFile());
+            }
+            else
+            {
+                QByteArray contents(mime_data->text().toAscii());
+                QString name = QString("Text-%1.txt").arg(QDateTime::currentDateTime().toTime_t());
+                db->file_put(contents, name);
+            }
         }
-        else
+        else if (mime_data->hasImage())
         {
-            QString name = QString("Text-%1.txt").arg(QDateTime::currentDateTime().toTime_t());
-            db->file_put(contents, name);
+            QImage img = qvariant_cast<QImage>(mime_data->imageData());
+            got_screenshot(QPixmap::fromImage(img));
         }
     }
     else
