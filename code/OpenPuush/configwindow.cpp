@@ -116,7 +116,6 @@ void configwindow::on_save_a_local_copy_of_image_toggled(bool checked)
         ui->save_a_local_copy_of_image->setEnabled(false);
         ui->path_to_local_copy->setText("");
         config::save(config::SAVE_COPY, false);
-        qDebug() << "here i am, in on_save_a_local_copy_of_image_toggled";
     }
 }
 
