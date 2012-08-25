@@ -447,7 +447,10 @@ void openpuush::upload_current_window()
 #if defined(Q_OS_LINUX) || defined(Q_OS_WIN32)
     if (dropbox_authenticated)
     {
-        got_screenshot(QPixmap::grabWindow(QxtWindowSystem::activeWindow()));
+        WId window = QxtWindowSystem::activeWindow();
+        QRect f = QxtWindowSystem::windowGeometry(window);
+
+        got_screenshot(QPixmap::grabWindow(QApplication::desktop()->winId(), f.x(), f.y(), f.width(), f.height()));
     }
     else
     {
