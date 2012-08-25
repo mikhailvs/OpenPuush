@@ -16,14 +16,12 @@ HEADERS += dropbox.hpp screenshot_overlay.hpp \
     openpuush.hpp \
     configwindow.hpp \
     audio_mgr.hpp \
-    config.hpp \
-    tray_menu.hpp
+    config.hpp
 SOURCES += dropbox.cpp main.cpp screenshot_overlay.cpp \
     openpuush.cpp \
     configwindow.cpp \
     audio_mgr.cpp \
-    config.cpp \
-    tray_menu.cpp
+    config.cpp
 
 
 win32: LIBS +=  -lQxtWidgets -lQxtCore
