@@ -152,6 +152,7 @@ void openpuush::init_tray_icon()
     tray_icon = new QSystemTrayIcon(this);
     tray_icon->setIcon(QIcon(":/icons/0.png"));
     tray_icon->show();
+    tray_icon->setToolTip("OpenPuush is ready.");
 
     connect(tray_icon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
             this, SLOT(tray_icon_activated(QSystemTrayIcon::ActivationReason)));
@@ -238,8 +239,7 @@ void openpuush::db_upload_progress(qint64 sent, qint64 total)
     int img_num = (sent * 10) / total;
 
     tray_icon->setIcon(QIcon(QString(":/icons/%1.png").arg(img_num)));
-
-    qDebug() << ((sent * 100) / total) << "%";
+    tray_icon->setToolTip(QString("%1%").arg((sent * 100) / total));
 }
 
 void openpuush::db_upload_finished()
@@ -555,6 +555,7 @@ void openpuush::follow_link()
 void openpuush::tray_icon_normal()
 {
     tray_icon->setIcon(QIcon(":/icons/0.png"));
+    tray_icon->setToolTip("OpenPuush is ready.");
     follow_tray_icon_link = false;
 }
 
