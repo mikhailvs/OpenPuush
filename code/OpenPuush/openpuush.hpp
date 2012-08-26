@@ -103,18 +103,6 @@ private:
     QMenu * menu;
     QMenu * recent_menu;
 
-    QAction * action_exit;
-    QAction * action_settings;
-    QAction * action_disable;
-    QAction * action_file_upload;
-    QAction * action_clipboard_upload;
-    QAction * action_capture_area;
-    QAction * action_capture_desktop;
-    QAction * action_capture_current_window;
-    QAction * action_my_account;
-
-    QList<QAction *> recent_actions;
-
     QString link;
     QStringList recent_links;
     bool dropbox_authenticated;

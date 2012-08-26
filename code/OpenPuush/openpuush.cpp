@@ -101,15 +101,6 @@ openpuush::~openpuush()
     delete file_shortcut;
     delete upload_clipboard_shortcut;
     delete toggle_functionality_shortcut;
-    delete action_exit;
-    delete action_settings;
-    delete action_disable;
-    delete action_file_upload;
-    delete action_clipboard_upload;
-    delete action_capture_area;
-    delete action_capture_desktop;
-    delete action_capture_current_window;
-    delete action_my_account;
 }
 
 void openpuush::init_conf_win()
@@ -210,7 +201,7 @@ void openpuush::init_tray_icon_context_menu()
     menu->addAction("Upload File", file_dialog, SLOT(show()),
                     QKeySequence(config::load(config::UPLOAD_FILE).toString()));
     menu->addSeparator();
-    menu->addAction("Disable OpenPuushing", this, SLOT(toggle_functionality()),
+    menu->addAction("Toggle OpenPuush Shortcuts", this, SLOT(toggle_functionality()),
                     QKeySequence(config::load(config::TOGGLE_FUNCTIONALITY).toString()));
     menu->addAction("Settings", conf_win, SLOT(show()));
     menu->addSeparator();
@@ -493,7 +484,6 @@ void openpuush::toggle_functionality()
     tray_icon->showMessage("Status", QString("OpenPuush is now %1.")
                            .arg(shortcuts_enabled ? "enabled" : "disabled"),
                            QSystemTrayIcon::Information, 2000);
-    action_disable->setText(shortcuts_enabled ? "Disable OpenPuushing" : "Enable OpenPuushing");
 }
 
 void openpuush::tray_icon_activated(QSystemTrayIcon::ActivationReason reason)
