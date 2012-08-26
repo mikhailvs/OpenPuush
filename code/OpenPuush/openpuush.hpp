@@ -78,6 +78,12 @@ private slots:
 
     void exit();
 
+    void recent_link_0();
+    void recent_link_1();
+    void recent_link_2();
+    void recent_link_3();
+    void recent_link_4();
+
 private:
     dropbox            * db;
     configwindow       * conf_win;
@@ -86,7 +92,6 @@ private:
     QSystemTrayIcon * tray_icon;
     QFileDialog     * file_dialog;
     QTimer          * info_update_timer;
-    QMenu           * menu;
 
     QxtGlobalShortcut * fullscreen_shortcut;
     QxtGlobalShortcut * current_window_shortcut;
@@ -94,6 +99,9 @@ private:
     QxtGlobalShortcut * file_shortcut;
     QxtGlobalShortcut * upload_clipboard_shortcut;
     QxtGlobalShortcut * toggle_functionality_shortcut;
+
+    QMenu * menu;
+    QMenu * recent_menu;
 
     QAction * action_exit;
     QAction * action_settings;
@@ -104,6 +112,8 @@ private:
     QAction * action_capture_desktop;
     QAction * action_capture_current_window;
     QAction * action_my_account;
+
+    QList<QAction *> recent_actions;
 
     QString link;
     QStringList recent_links;

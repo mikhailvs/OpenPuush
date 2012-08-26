@@ -33,6 +33,7 @@
 #include <QUrl>
 #include <QDesktopServices>
 #include <QMenu>
+#include <QVector>
 
 #include <phonon/AudioOutput>
 #include <phonon/MediaObject>
@@ -192,41 +193,28 @@ void openpuush::init_shortcuts()
 void openpuush::init_tray_icon_context_menu()
 {
     menu = new QMenu();
+    recent_menu = new QMenu("Recent Uploads");
 
-    menu->addSeparator()->setText("weeeE");
-
-    action_exit = new QAction("Exit", this);
-    action_settings = new QAction("Settings...", this);
-    action_disable = new QAction("Disable OpenPuushing", this);
-    action_file_upload = new QAction("Upload File...", this);
-    action_clipboard_upload = new QAction("Upload Clipboard", this);
-    action_capture_area = new QAction("Capture Area...", this);
-    action_capture_desktop = new QAction("Capture Desktop", this);
-    action_capture_current_window = new QAction("Capture Current Window", this);
-    action_my_account = new QAction("My Account", this);
-
-    connect(action_exit, SIGNAL(triggered()), this, SLOT(exit()));
-    connect(action_settings, SIGNAL(triggered()), conf_win, SLOT(show()));
-    connect(action_disable, SIGNAL(triggered()), this, SLOT(toggle_functionality()));
-    connect(action_file_upload, SIGNAL(triggered()), file_dialog, SLOT(show()));
-    connect(action_clipboard_upload, SIGNAL(triggered()), this, SLOT(upload_clipboard()));
-    connect(action_capture_area, SIGNAL(triggered()), this, SLOT(show_ss_overlay()));
-    connect(action_capture_desktop, SIGNAL(triggered()), this, SLOT(fullscreen_ss()));
-    connect(action_capture_current_window, SIGNAL(triggered()), this, SLOT(upload_current_window()));
-    connect(action_my_account, SIGNAL(triggered()), conf_win, SLOT(on_go_to_dropbox_button_clicked()));
-
-    menu->addAction(action_my_account);
+    menu->addAction("My Account", conf_win, SLOT(on_go_to_dropbox_button_clicked()));
     menu->addSeparator();
-    menu->addAction(action_capture_current_window);
-    menu->addAction(action_capture_desktop);
-    menu->addAction(action_capture_area);
-    menu->addAction(action_clipboard_upload);
-    menu->addAction(action_file_upload);
+    menu->addMenu(recent_menu);
     menu->addSeparator();
-    menu->addAction(action_disable);
-    menu->addAction(action_settings);
+    menu->addAction("Capture Current Window", this, SLOT(upload_current_window()),
+                    QKeySequence(config::load(config::CAPTURE_CURRENT_WINDOW).toString()));
+    menu->addAction("Capture Desktop", this, SLOT(fullscreen_ss()),
+                    QKeySequence(config::load(config::CAPTURE_FULLSCREEN).toString()));
+    menu->addAction("Capture Area", this, SLOT(show_ss_overlay()),
+                    QKeySequence(config::load(config::CAPTURE_AREA).toString()));
+    menu->addAction("Upload Clipboard", this, SLOT(upload_clipboard()),
+                    QKeySequence(config::load(config::UPLOAD_CLIPBOARD).toString()));
+    menu->addAction("Upload File", file_dialog, SLOT(show()),
+                    QKeySequence(config::load(config::UPLOAD_FILE).toString()));
     menu->addSeparator();
-    menu->addAction(action_exit);
+    menu->addAction("Disable OpenPuushing", this, SLOT(toggle_functionality()),
+                    QKeySequence(config::load(config::TOGGLE_FUNCTIONALITY).toString()));
+    menu->addAction("Settings", conf_win, SLOT(show()));
+    menu->addSeparator();
+    menu->addAction("Exit", this, SLOT(exit()));
 
     tray_icon->setContextMenu(menu);
 }
@@ -270,7 +258,7 @@ void openpuush::db_upload_finished()
     tray_icon->showMessage("Success", link, QSystemTrayIcon::NoIcon, 2000);
     follow_tray_icon_link = true;
 
-    recent_links.append(link);
+    recent_links.prepend(link);
 
     if (config::load(config::SOUND_NOTIFICATION).toBool())
     {
@@ -448,9 +436,13 @@ void openpuush::upload_current_window()
     if (dropbox_authenticated)
     {
         WId window = QxtWindowSystem::activeWindow();
+#if defined(Q_WS_X11)
+        got_screenshot(QPixmap::grabWindow(window));
+#else
         QRect f = QxtWindowSystem::windowGeometry(window);
-
-        got_screenshot(QPixmap::grabWindow(QApplication::desktop()->winId(), f.x(), f.y(), f.width(), f.height()));
+        got_screenshot(QPixmap::grabWindow(QApplication::desktop()->winId(),
+                                           f.left(), f.top(), f.width(), f.height()));
+#endif
     }
     else
     {
@@ -531,7 +523,31 @@ void openpuush::tray_icon_activated(QSystemTrayIcon::ActivationReason reason)
         }
         break;
     case QSystemTrayIcon::Context:
+    {
+        recent_menu->clear();
+
+        int size = recent_links.size();
+
+        for (int i = 0; i < size && i < 5; ++i)
+        {
+            switch (i)
+            {
+#define case(n) case n: \
+    recent_menu->addAction(recent_links[i].split("/").last(), this, SLOT(recent_link_ ## n())); \
+    break;
+            case(0)
+            case(1)
+            case(2)
+            case(3)
+            case(4)
+#undef case
+            default:
+                break;
+            }
+        }
+
         break;
+    }
     default:
         break;
     }
@@ -625,3 +641,15 @@ void openpuush::exit()
 {
     std::exit(0);
 }
+
+#define recent_link(n) \
+    void openpuush::recent_link_ ## n() \
+    { \
+        QDesktopServices::openUrl(recent_links[n]); \
+    }
+
+recent_link(0)
+recent_link(1)
+recent_link(2)
+recent_link(3)
+recent_link(4)
