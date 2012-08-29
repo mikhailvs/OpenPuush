@@ -187,7 +187,11 @@ void openpuush::init_tray_icon_context_menu()
     menu = new QMenu();
     recent_menu = new QMenu("Recent Uploads");
 
-    menu->addAction(QString("Build #%1").arg(BUILD_NUMBER));
+    QAction * build_number = new QAction(QString("OpenPuush build #%1").arg(BUILD_NUMBER), this);
+    build_number->setEnabled(false);
+    connect(menu, SIGNAL(destroyed()), build_number, SLOT(deleteLater()));
+
+    menu->addAction(build_number);
     menu->addSeparator();
     menu->addAction("My Account", conf_win, SLOT(on_go_to_dropbox_button_clicked()));
     menu->addSeparator();
