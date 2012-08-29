@@ -23,13 +23,14 @@ SOURCES += dropbox.cpp main.cpp screenshot_overlay.cpp \
     audio_mgr.cpp \
     config.cpp
 
-
-win32: LIBS +=  -lQxtWidgets -lQxtCore
-
 FORMS += \
     configwindow.ui
 
 RESOURCES += \
     resources.qrc
 
-DEFINES += BUILD_NUMBER=$$system(ruby build_increment.rb)
+BUILDNO = $$system(ruby build_increment.rb)
+DEFINES += BUILD_NUMBER=$${BUILDNO}
+
+mac: LIBS += -framework QxtCore -framework QxtWidgets
+else:win32: LIBS += -lQxtCore -lQxtWidgets

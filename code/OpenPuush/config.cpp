@@ -99,7 +99,7 @@ void config::defaults()
     save(SHOW_SETTINGS,              true);
     save(BEGIN_SCREEN_CAPTURE,       false);
     save(OPEN_FILE_DIALOG,           false);
-#if defined(Q_OS_MACX)
+#if defined(Q_OS_MAC)
     save(CAPTURE_FULLSCREEN,         "Meta+Shift+3");
     save(CAPTURE_CURRENT_WINDOW,     "Meta+Shift+2");
     save(CAPTURE_AREA,               "Meta+Shift+4");
