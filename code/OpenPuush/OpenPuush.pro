@@ -31,3 +31,5 @@ FORMS += \
 
 RESOURCES += \
     resources.qrc
+
+DEFINES += BUILD_NUMBER=$$system(ruby build_increment.rb)
