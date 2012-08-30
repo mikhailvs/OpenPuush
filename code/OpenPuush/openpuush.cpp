@@ -35,11 +35,6 @@
 #include <QMenu>
 #include <QVector>
 
-#include <phonon/AudioOutput>
-#include <phonon/MediaObject>
-#include <phonon/MediaSource>
-#include <phonon/VideoWidget>
-
 #include <cstdlib>
 
 #if defined(Q_OS_LINUX)
