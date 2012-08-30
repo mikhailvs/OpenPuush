@@ -455,7 +455,6 @@ void openpuush::upload_clipboard()
 {
     if (dropbox_authenticated)
     {
-
         const QMimeData * mime_data = QApplication::clipboard()->mimeData();
 
         if (mime_data->hasText())
@@ -463,7 +462,23 @@ void openpuush::upload_clipboard()
             QUrl url(mime_data->text().trimmed());
             if (url.isValid() && url.isLocalFile())
             {
-                upload_file(url.toLocalFile());
+                QFileInfo info(url.toLocalFile());
+                if (info.isDir())
+                {
+                    qDebug() << "pretending to upload a directory";
+                }
+                else
+                {
+                    QStringList files = url.toString().split("\n");
+                    if (files.length() > 1)
+                    {
+                        qDebug() << "pretending to upload multiple files";
+                    }
+                    else
+                    {
+                        upload_file(url.toLocalFile());
+                    }
+                }
             }
             else
             {

@@ -45,6 +45,7 @@ static const char * names[] = {
     "updates/last_update_check",
     "advanced/compression/no_compression",
     "advanced/compression/smart_compression",
+    "advanced/compression/compress_files",
     "advanced/desktop_integration/show_explorer_menu",
     "advanced/multiple_monitors/capture_all_screens",
     "advanced/multiple_monitors/capture_screen_with_cursor",
@@ -117,6 +118,7 @@ void config::defaults()
     save(LAST_UPDATE_CHECK,          0);
     save(NO_COMPRESSION,             true);
     save(SMART_COMPRESSION,          false);
+    save(COMPRESS_FILES,             false);
     save(SHOW_EXPLORER_MENU,         true);
     save(CAPTURE_ALL_SCREENS,        true);
     save(CAPTURE_SCREEN_WITH_CURSOR, false);
@@ -127,7 +129,7 @@ void config::defaults()
 bool config::first_run()
 {
     bool r = 0;
-    for (int i = 5; i < 28; ++i)
+    for (int i = 5; i < 29; ++i)
     {
         r |= instance().contains(names[i]);
     }

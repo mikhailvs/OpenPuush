@@ -75,6 +75,7 @@ void configwindow::init_settings()
     LOAD_CHECKBOX(capture_primary_screen,        CAPTURE_PRIMARY_SCREEN);
     LOAD_CHECKBOX(capture_screen_with_cursor,    CAPTURE_SCREEN_WITH_CURSOR);
     LOAD_CHECKBOX(enable_experimental_features,  ENABLE_EXPERIMENTAL);
+    LOAD_CHECKBOX(compress_files_before_upload,  COMPRESS_FILES);
 
     LOAD_SHORTCUT(capture_fullscreen_button,     CAPTURE_FULLSCREEN);
     LOAD_SHORTCUT(capture_current_window_button, CAPTURE_CURRENT_WINDOW);
@@ -100,6 +101,7 @@ TOGGLE_SETTING(on_capture_all_screens_toggled,          CAPTURE_ALL_SCREENS)
 TOGGLE_SETTING(on_capture_primary_screen_toggled,       CAPTURE_PRIMARY_SCREEN)
 TOGGLE_SETTING(on_capture_screen_with_cursor_toggled,   CAPTURE_SCREEN_WITH_CURSOR)
 TOGGLE_SETTING(on_enable_experimental_features_toggled, ENABLE_EXPERIMENTAL)
+TOGGLE_SETTING(on_compress_files_before_upload_toggled, COMPRESS_FILES)
 
 void configwindow::on_start_on_startup_toggled(bool checked)
 {

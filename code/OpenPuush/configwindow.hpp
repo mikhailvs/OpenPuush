@@ -77,6 +77,8 @@ private slots:
 
     void on_check_for_updates_button_clicked();
 
+    void on_compress_files_before_upload_toggled(bool checked);
+
 signals:
     void set_shortcuts_enabled(bool, bool);
     void toggle_start_on_boot();
