@@ -29,3 +29,6 @@ Compiling
 ---------
 To build OpenPuush, all you need to do is cd into the directory with the code and run `qmake` (possibly with whatever
 `-spec` option you want) and then compile with `make` or whatever.
+
+For the build to work properly, you must have the Qt and libqxt packages installed on your system, on Ubuntu/Fedora (others
+too I bet) you need the associated "dev/devel" packages.
